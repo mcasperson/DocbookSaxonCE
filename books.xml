@@ -1,0 +1,13 @@
+<book>
+
+    <bookinfo>
+        <title>Hello, world</title>
+    </bookinfo>
+
+    <chapter>
+        <title>Hello, world</title>
+
+        <para>This is my first DocBook file.</para>
+
+    </chapter>
+</book>
