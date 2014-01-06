@@ -7,14 +7,26 @@
         function onSaxonLoad()
         {
             var xsl = Saxon.requestXML("docbook-xsl-1.78.1/xhtml/docbook.xsl");
-            var xml = Saxon.requestXML("books.xml");
+            var xml = Saxon.requestXML("file.xml");
             var proc = Saxon.newXSLT20Processor(xsl);
-            var docbook = proc.transformToFragment(xml);
-            document.getElementById("docbook").appendChild(docbook);
+            proc.setSuccess(function(data){
+							document.body.innerHTML(data.getResultDocument().querySelector("body").innerHTML);
+            });
+            proc.transformToFragment(xml);
+            
         }
     </script>
+    <!--<script type="text/javascript" language="javascript" src="frameless/frameless-ixslt2.js"></script>
+    <script type="text/javascript">
+        var xslt = new XSLT2Processor;
+        xslt.importStylesheetURI("docbook-xsl-1.78.1/xhtml/docbook.xsl").then(
+						function (xslt) {
+								var output = xslt.transformToFragment("file.xml");
+								document.body.appendChild(output);
+						}
+				)
+    </script>-->
 </head>
 <body>
-        <div id="docbook"></div>
 </body>
 </html>
